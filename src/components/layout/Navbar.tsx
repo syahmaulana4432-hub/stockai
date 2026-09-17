@@ -32,6 +32,7 @@ export function Navbar() {
     { name: 'Market', href: '/market', icon: <TrendingUp className="w-4 h-4" /> },
     { name: 'Analysis', href: '/analysis/BBCA', icon: <Sparkles className="w-4 h-4 text-cyan-400" /> },
     { name: 'Screener', href: '/screener', icon: <SlidersHorizontal className="w-4 h-4" /> },
+    { name: 'Advisor', href: '/advisor', icon: <Compass className="w-4 h-4 text-cyan-400" /> },
     { name: 'Brokers', href: '/brokers', icon: <Layers className="w-4 h-4 text-indigo-400" /> },
     { name: 'News', href: '/news', icon: <Newspaper className="w-4 h-4" /> },
     { name: 'Learn', href: '/learn', icon: <BookOpen className="w-4 h-4" /> },

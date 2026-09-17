@@ -146,6 +146,31 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* AI Advisor Banner CTA (Item 34) */}
+      <div className="rounded-3xl border border-cyan-500/30 bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
+        <div className="space-y-2 text-center md:text-left">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-xs font-semibold text-cyan-300">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>AI Strategy Advisor</span>
+          </div>
+          <h2 className="text-xl sm:text-2xl font-black text-white">
+            Bingung Memilih Kriteria Screener Saham?
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
+            Gunakan <strong>AI Strategy Mapper</strong> untuk memetakan tujuan investasi, toleransi risiko, dan jangka waktu Anda ke preset screener &amp; analisis saham yang tepat secara objektif.
+          </p>
+        </div>
+
+        <Link
+          href="/advisor"
+          className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-indigo-600 hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-lg shadow-cyan-950/50 transition-opacity shrink-0"
+        >
+          <Compass className="w-4 h-4" />
+          <span>Mulai Konsultasi AI Advisor</span>
+          <ArrowRight className="w-4 h-4" />
+        </Link>
+      </div>
+
       {/* Global Economic Calendar */}
       <EconomicCalendarWidget />
 

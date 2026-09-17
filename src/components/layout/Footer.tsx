@@ -43,6 +43,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/advisor" className="hover:text-cyan-400 transition-colors">
+                  AI Strategy Advisor
+                </Link>
+              </li>
+              <li>
                 <Link href="/analysis/BBCA" className="hover:text-cyan-400 transition-colors">
                   Technical & Fundamental Research
                 </Link>
