@@ -129,11 +129,11 @@ export default function HomePage() {
                 <span className="text-[10px] text-slate-400 block">High Quality</span>
               </div>
               <div className="rounded-lg bg-slate-950 p-2.5 border border-slate-800">
-                <span className="text-[11px] font-sans text-slate-400 block">AI Bullish Scenario</span>
-                <span className="text-sm font-bold text-cyan-400">
-                  {featuredStock.aiAnalysis.scenarios.bullish.probability}% Prob.
+                <span className="text-[11px] font-sans text-slate-400 block">AI Setup</span>
+                <span className="text-xs font-bold text-emerald-400 block mt-0.5">
+                  Bullish Setup
                 </span>
-                <span className="text-[10px] text-slate-400 block">
+                <span className="text-[10px] text-slate-400 block font-mono mt-0.5">
                   TP {formatIDR(featuredStock.aiAnalysis.scenarios.bullish.priceTarget, false)}
                 </span>
               </div>

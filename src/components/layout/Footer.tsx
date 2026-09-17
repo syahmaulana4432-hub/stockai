@@ -13,13 +13,13 @@ export function Footer() {
               <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-tr from-cyan-600 to-indigo-600 text-white font-bold text-xs">
                 <Sparkles className="w-4 h-4" />
               </div>
-              <span className="font-bold text-base text-white">StockAI Indonesia</span>
+              <span className="font-bold text-base text-white">StockAI</span>
             </div>
             <p className="text-slate-400 text-xs leading-relaxed">
-              Platform analisis saham, edukasi interaktif, dan pemodelan AI skenario cerdas untuk pasar modal Indonesia (IDX/BEI).
+              Global stock research, multi-market screening, trading education, and evidence-based AI scenario analysis.
             </p>
             <div className="text-[11px] text-slate-400">
-              Arsitektur: Next.js + TypeScript + Tailwind
+              Arsitektur: Multi-Market & Open Broker Engine
             </div>
           </div>
 
@@ -28,23 +28,23 @@ export function Footer() {
             <h4 className="font-semibold text-white uppercase tracking-wider text-[11px]">Fitur Platform</h4>
             <ul className="space-y-1.5">
               <li>
+                <Link href="/screener" className="hover:text-cyan-400 transition-colors">
+                  Global Stock Screener
+                </Link>
+              </li>
+              <li>
                 <Link href="/market" className="hover:text-cyan-400 transition-colors">
-                  Market Dashboard & IHSG
+                  Multi-Market Dashboard
+                </Link>
+              </li>
+              <li>
+                <Link href="/brokers" className="hover:text-cyan-400 transition-colors">
+                  Broker Connection Center
                 </Link>
               </li>
               <li>
                 <Link href="/analysis/BBCA" className="hover:text-cyan-400 transition-colors">
-                  Technical & Fundamental Analysis
-                </Link>
-              </li>
-              <li>
-                <Link href="/screener" className="hover:text-cyan-400 transition-colors">
-                  Stock Screener & Filter
-                </Link>
-              </li>
-              <li>
-                <Link href="/news" className="hover:text-cyan-400 transition-colors">
-                  Berita Pasar & Corporate Action
+                  Technical & Fundamental Research
                 </Link>
               </li>
             </ul>
@@ -71,7 +71,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/portfolio" className="hover:text-indigo-400 transition-colors">
-                  Paper Trading Sandbox
+                  Multi-Broker Portfolio Sandbox
                 </Link>
               </li>
             </ul>
@@ -94,12 +94,12 @@ export function Footer() {
         {/* Regulatory Disclaimer */}
         <div className="border-t border-slate-800/80 pt-6 text-[11px] text-slate-400 space-y-2 text-center sm:text-left">
           <p>
-            <strong>Pemberitahuan Risiko Pasar Modal:</strong> Investasi saham mengandung risiko fluktuasi modal termasuk potensi kehilangan sebagian atau seluruh nilai pokok investasi. Informasi dan model skenario komputasi yang disediakan oleh StockAI Indonesia bukan merupakan ajakan membeli/menjual atau jaminan keuntungan dalam bentuk apa pun.
+            <strong>Pemberitahuan Risiko Pasar Modal:</strong> Investasi saham mengandung risiko fluktuasi modal termasuk potensi kehilangan sebagian atau seluruh nilai pokok investasi. Informasi dan model skenario komputasi yang disediakan oleh StockAI bukan merupakan ajakan membeli/menjual atau jaminan keuntungan dalam bentuk apa pun.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-between pt-2 text-slate-400">
-            <span>© 2026 StockAI Indonesia. Phase 1 — UI & MVP (Simulated IDX Dataset).</span>
+            <span>© 2026 StockAI. Phase 1 — UI & MVP (Simulated Multi-Market Dataset).</span>
             <span className="flex items-center gap-1 mt-2 sm:mt-0">
-              Built with precision for Indonesian Investors & Traders.
+              Global Stock Research & Intelligence Platform.
             </span>
           </div>
         </div>

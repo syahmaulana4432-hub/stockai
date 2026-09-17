@@ -13,7 +13,7 @@ export function IndicesTicker() {
           <h2 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
             <Activity className="w-3.5 h-3.5 text-cyan-400" /> Indeks Pasar Saham Utama
           </h2>
-          <span className="text-[11px] text-slate-500">IDX Real-time Mock</span>
+          <span className="text-[11px] font-mono text-cyan-400 bg-slate-900 border border-slate-800 px-2 py-0.5 rounded">Simulated Market Data (Phase 1)</span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">

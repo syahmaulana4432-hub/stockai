@@ -13,11 +13,10 @@ export type BrokerProviderId =
   | 'tiger_brokers';
 
 export type BrokerConnectionStatus =
-  | 'CONNECTED'
-  | 'DISCONNECTED'
-  | 'REQUIRES_AUTHENTICATION'
-  | 'READ_ONLY'
-  | 'ERROR';
+  | 'Demo'
+  | 'Available'
+  | 'Coming Soon'
+  | 'Connected';
 
 export interface BrokerCapabilities {
   supportsPortfolioSync: boolean;
@@ -32,6 +31,7 @@ export interface BrokerProviderMeta {
   country: string; // 'ID', 'US', 'GLOBAL'
   region: 'Americas' | 'Europe' | 'Asia-Pacific' | 'Global';
   authType: 'OAUTH2' | 'API_KEY' | 'TOKEN';
+  status: BrokerConnectionStatus;
   description: string;
   supportedExchanges: string[];
   capabilities: BrokerCapabilities;
@@ -103,6 +103,7 @@ export const MOCK_BROKER_PROVIDERS: BrokerProviderMeta[] = [
     country: 'GLOBAL',
     region: 'Global',
     authType: 'OAUTH2',
+    status: 'Demo',
     description: 'Akses ke 150+ bursa dunia di 33 negara (US, EU, JP, HK, AU, UK)',
     supportedExchanges: ['NYSE', 'NASDAQ', 'LSE', 'TSE', 'HKEX', 'ASX'],
     capabilities: {
@@ -118,6 +119,7 @@ export const MOCK_BROKER_PROVIDERS: BrokerProviderMeta[] = [
     country: 'US',
     region: 'Americas',
     authType: 'API_KEY',
+    status: 'Demo',
     description: 'Developer-first commission-free trading API untuk saham dan ETF bursa US',
     supportedExchanges: ['NYSE', 'NASDAQ', 'AMEX'],
     capabilities: {
@@ -133,6 +135,7 @@ export const MOCK_BROKER_PROVIDERS: BrokerProviderMeta[] = [
     country: 'ID',
     region: 'Asia-Pacific',
     authType: 'TOKEN',
+    status: 'Demo',
     description: 'Sekuritas BUMN terkemuka untuk transaksi saham dan obligasi Bursa Efek Indonesia (BEI/IDX)',
     supportedExchanges: ['IDX'],
     capabilities: {
@@ -148,6 +151,7 @@ export const MOCK_BROKER_PROVIDERS: BrokerProviderMeta[] = [
     country: 'ID',
     region: 'Asia-Pacific',
     authType: 'TOKEN',
+    status: 'Available',
     description: 'Platform investasi saham dan reksa dana terintegrasi pasar modal Indonesia',
     supportedExchanges: ['IDX'],
     capabilities: {
@@ -163,6 +167,7 @@ export const MOCK_BROKER_PROVIDERS: BrokerProviderMeta[] = [
     country: 'ID',
     region: 'Asia-Pacific',
     authType: 'OAUTH2',
+    status: 'Available',
     description: 'Social investing platform & sekuritas modern untuk investor ritel Indonesia',
     supportedExchanges: ['IDX'],
     capabilities: {
@@ -178,6 +183,7 @@ export const MOCK_BROKER_PROVIDERS: BrokerProviderMeta[] = [
     country: 'ID',
     region: 'Asia-Pacific',
     authType: 'TOKEN',
+    status: 'Available',
     description: 'Aplikasi investasi saham & reksa dana ramah pemula generasi muda Indonesia',
     supportedExchanges: ['IDX'],
     capabilities: {
@@ -193,6 +199,7 @@ export const MOCK_BROKER_PROVIDERS: BrokerProviderMeta[] = [
     country: 'GLOBAL',
     region: 'Global',
     authType: 'OAUTH2',
+    status: 'Coming Soon',
     description: 'Multi-asset global broker untuk ekuitas, obligasi, FX, dan komoditas internasional',
     supportedExchanges: ['NYSE', 'NASDAQ', 'LSE', 'EURONEXT', 'SGX'],
     capabilities: {
@@ -208,6 +215,7 @@ export const MOCK_BROKER_PROVIDERS: BrokerProviderMeta[] = [
     country: 'GLOBAL',
     region: 'Asia-Pacific',
     authType: 'OAUTH2',
+    status: 'Coming Soon',
     description: 'Pialang saham terkemuka untuk pasar US, Hong Kong, Singapura, dan Australia',
     supportedExchanges: ['NASDAQ', 'NYSE', 'HKEX', 'SGX', 'ASX'],
     capabilities: {
@@ -222,29 +230,29 @@ export const MOCK_BROKER_PROVIDERS: BrokerProviderMeta[] = [
 export const MOCK_BROKER_ACCOUNTS: BrokerAccount[] = [
   {
     accountId: 'acc-ibkr-01',
-    accountName: 'IBKR Global Pro (US & HK)',
+    accountName: 'IBKR Global Sandbox (US & HK)',
     brokerId: 'interactive_brokers',
     brokerName: 'Interactive Brokers',
     currency: 'USD',
     totalEquity: 68450.25,
     cashBalance: 14200.0,
     buyingPower: 28400.0,
-    status: 'CONNECTED',
-    isPaperTrading: false,
-    lastSyncedAt: '2026-09-16T08:30:00Z',
+    status: 'Demo',
+    isPaperTrading: true,
+    lastSyncedAt: '2026-09-16T16:00:00+07:00',
   },
   {
     accountId: 'acc-most-02',
-    accountName: 'MOST Equity Regular (IDX)',
+    accountName: 'MOST Equity Regular (Simulasi IDX)',
     brokerId: 'mandiri_sekuritas',
     brokerName: 'Mandiri Sekuritas',
     currency: 'IDR',
     totalEquity: 485000000,
     cashBalance: 125000000,
     buyingPower: 125000000,
-    status: 'CONNECTED',
-    isPaperTrading: false,
-    lastSyncedAt: '2026-09-16T08:45:00Z',
+    status: 'Demo',
+    isPaperTrading: true,
+    lastSyncedAt: '2026-09-16T16:00:00+07:00',
   },
   {
     accountId: 'acc-alpaca-paper',
@@ -255,8 +263,8 @@ export const MOCK_BROKER_ACCOUNTS: BrokerAccount[] = [
     totalEquity: 100000.0,
     cashBalance: 45000.0,
     buyingPower: 90000.0,
-    status: 'CONNECTED',
+    status: 'Demo',
     isPaperTrading: true,
-    lastSyncedAt: '2026-09-16T08:55:00Z',
+    lastSyncedAt: '2026-09-16T16:00:00+07:00',
   },
 ];

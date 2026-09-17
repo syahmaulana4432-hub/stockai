@@ -49,21 +49,21 @@ export default function BrokersPage() {
       if (!exists) {
         const newAcc: BrokerAccount = {
           accountId: `acc-${provider.id}-demo`,
-          accountName: `${provider.name} Live Sandbox`,
+          accountName: `${provider.name} Sandbox Account`,
           brokerId: provider.id,
           brokerName: provider.name,
           currency: provider.country === 'ID' ? 'IDR' : 'USD',
           totalEquity: provider.country === 'ID' ? 150000000 : 25000,
           cashBalance: provider.country === 'ID' ? 45000000 : 8500,
           buyingPower: provider.country === 'ID' ? 45000000 : 17000,
-          status: 'CONNECTED',
-          isPaperTrading: false,
-          lastSyncedAt: new Date().toISOString(),
+          status: 'Demo',
+          isPaperTrading: true,
+          lastSyncedAt: '2026-09-16T16:00:00+07:00',
         };
         setAccounts((prev) => [...prev, newAcc]);
-        setToastMessage(`✓ Berhasil menghubungkan akun ${provider.name} (OAuth 2.0 Mock)!`);
+        setToastMessage(`✓ Berhasil menambahkan akun simulasi ${provider.name} (Demo Sandbox Mode)!`);
       } else {
-        setToastMessage(`Akun ${provider.name} sudah terhubung.`);
+        setToastMessage(`Akun ${provider.name} sudah aktif dalam daftar demo.`);
       }
       setTimeout(() => setToastMessage(null), 3500);
     }, 1000);
@@ -71,7 +71,7 @@ export default function BrokersPage() {
 
   const handleDisconnect = (accountId: string, brokerName: string) => {
     setAccounts((prev) => prev.filter((a) => a.accountId !== accountId));
-    setToastMessage(`Koneksi ${brokerName} berhasil diputus.`);
+    setToastMessage(`Koneksi simulasi ${brokerName} berhasil dihapus.`);
     setTimeout(() => setToastMessage(null), 3500);
   };
 
@@ -84,14 +84,14 @@ export default function BrokersPage() {
             <span className="text-xs font-bold uppercase tracking-wider text-cyan-400 bg-cyan-950/60 border border-cyan-500/30 px-2.5 py-0.5 rounded-full">
               Multi-Broker Architecture
             </span>
-            <span className="text-xs font-mono text-slate-400">Open Broker Adapter v1.0</span>
+            <span className="text-xs font-mono text-slate-400">Open Broker Adapter v1.0 (Simulation Phase 1)</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-white flex items-center gap-2.5">
             <Layers className="w-7 h-7 text-indigo-400" />
             <span>Broker Connection Center</span>
           </h1>
           <p className="text-xs sm:text-sm text-slate-400 max-w-2xl">
-            Hubungkan akun sekuritas dan broker global Anda untuk sinkronisasi portfolio, order routing terpadu, dan analisa multi-market tanpa berganti platform.
+            Simulasi arsitektur multi-broker untuk integrasi portofolio terpadu dan routing order lintas bursa. Pada Phase 1 saat ini, semua koneksi berjalan dalam mode <strong>Demo / Sandbox</strong>.
           </p>
         </div>
 
@@ -129,9 +129,9 @@ export default function BrokersPage() {
       <div className="space-y-3">
         <div className="flex items-center justify-between">
           <h2 className="text-base font-bold text-white flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Akun Terhubung ({accounts.length})
+            <CheckCircle2 className="w-4 h-4 text-cyan-400" /> Akun Broker Terdaftar ({accounts.length})
           </h2>
-          <span className="text-xs text-slate-400">Sinkronisasi otomatis aktif</span>
+          <span className="text-xs text-amber-400/90 font-mono">Status: Sandbox / Demo Mode</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -142,8 +142,12 @@ export default function BrokersPage() {
             >
               <div className="flex items-start justify-between">
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/50 border border-emerald-500/30 px-2 py-0.5 rounded-full">
-                    {acc.isPaperTrading ? 'Paper Trading' : 'Connected Live'}
+                  <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border ${
+                    acc.status === 'Connected'
+                      ? 'text-emerald-400 bg-emerald-950/50 border-emerald-500/30'
+                      : 'text-amber-400 bg-amber-950/50 border-amber-500/30'
+                  }`}>
+                    {acc.status} (Simulated)
                   </span>
                   <h3 className="font-bold text-white text-sm mt-1.5">{acc.brokerName}</h3>
                   <div className="text-[11px] font-mono text-slate-400">{acc.accountName}</div>
@@ -152,7 +156,7 @@ export default function BrokersPage() {
                   onClick={() => handleDisconnect(acc.accountId, acc.brokerName)}
                   className="text-[11px] text-slate-500 hover:text-rose-400 transition-colors"
                 >
-                  Putus
+                  Hapus
                 </button>
               </div>
 
@@ -173,7 +177,7 @@ export default function BrokersPage() {
 
               <div className="flex items-center justify-between pt-2 border-t border-slate-800/60 text-[10px] text-slate-400">
                 <span className="flex items-center gap-1">
-                  <RefreshCw className="w-3 h-3 text-cyan-400" /> Synced 2m ago
+                  <RefreshCw className="w-3 h-3 text-cyan-400" /> Synced: 2026-09-16 16:00 WIB
                 </span>
                 <Link
                   href="/portfolio"
@@ -187,7 +191,7 @@ export default function BrokersPage() {
 
           {accounts.length === 0 && (
             <div className="col-span-full rounded-2xl border border-dashed border-slate-800 bg-slate-900/30 p-8 text-center text-xs text-slate-400">
-              Belum ada broker terhubung. Pilih broker dari katalog di bawah untuk menghubungkan akun.
+              Belum ada broker dalam daftar simulasi. Pilih broker dari katalog di bawah untuk menambahkan akun demo.
             </div>
           )}
         </div>
@@ -201,7 +205,7 @@ export default function BrokersPage() {
               <Zap className="w-4 h-4 text-cyan-400" /> Katalog Integrasi Broker Global & Domestik
             </h2>
             <p className="text-xs text-slate-400">
-              Arsitektur adapter multi-broker siap untuk OAuth 2.0, REST, & Webhook API
+              Status ketersediaan integrasi adapter broker (Demo, Available, Coming Soon, Connected)
             </p>
           </div>
 
@@ -261,6 +265,17 @@ export default function BrokersPage() {
                       </div>
                       <div className="text-[11px] text-slate-400 mt-1">{provider.description}</div>
                     </div>
+                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border whitespace-nowrap ${
+                      provider.status === 'Demo'
+                        ? 'bg-amber-950/40 text-amber-300 border-amber-500/30'
+                        : provider.status === 'Available'
+                        ? 'bg-cyan-950/40 text-cyan-300 border-cyan-500/30'
+                        : provider.status === 'Connected'
+                        ? 'bg-emerald-950/40 text-emerald-300 border-emerald-500/30'
+                        : 'bg-slate-800 text-slate-400 border-slate-700'
+                    }`}>
+                      {provider.status}
+                    </span>
                   </div>
 
                   {/* Capabilities Tags */}
@@ -297,12 +312,12 @@ export default function BrokersPage() {
                 {/* Connect Action Button */}
                 <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs">
                   <span className="text-[10px] font-mono text-slate-500">
-                    Auth: {provider.authType}
+                    Auth Target: {provider.authType}
                   </span>
 
                   {isConnected ? (
-                    <span className="flex items-center gap-1 font-semibold text-emerald-400 text-xs">
-                      <CheckCircle2 className="w-3.5 h-3.5" /> Terhubung
+                    <span className="flex items-center gap-1 font-semibold text-cyan-400 text-xs">
+                      <CheckCircle2 className="w-3.5 h-3.5" /> Demo Aktif
                     </span>
                   ) : (
                     <button
@@ -313,11 +328,11 @@ export default function BrokersPage() {
                     >
                       {isConnecting ? (
                         <>
-                          <RefreshCw className="w-3 h-3 animate-spin" /> Menghubungkan...
+                          <RefreshCw className="w-3 h-3 animate-spin" /> Memuat...
                         </>
                       ) : (
                         <>
-                          <PlusCircle className="w-3 h-3" /> Hubungkan
+                          <PlusCircle className="w-3 h-3" /> Uji Demo
                         </>
                       )}
                     </button>
@@ -329,12 +344,12 @@ export default function BrokersPage() {
         </div>
       </div>
 
-      {/* 3. Multi-Broker & Multi-Market Architectural Diagram & Highlights */}
+      {/* 3. Multi-Broker & Multi-Market Architectural Disclosures */}
       <div className="rounded-2xl border border-slate-800 bg-slate-900/90 p-6 space-y-6">
         <div className="flex items-center gap-2">
           <Workflow className="w-5 h-5 text-indigo-400" />
           <h2 className="text-base font-bold text-white">
-            Arsitektur Open Broker & Multi-Market Engine
+            Desain Arsitektur Open Broker & Multi-Market Engine
           </h2>
         </div>
 
@@ -342,10 +357,10 @@ export default function BrokersPage() {
           <div className="p-4 rounded-xl border border-slate-800 bg-slate-950/60 space-y-2">
             <div className="flex items-center gap-2 font-bold text-white">
               <KeyRound className="w-4 h-4 text-cyan-400" />
-              <span>1. Zero-Custody Security</span>
+              <span>1. Mockup & Sandbox Architecture</span>
             </div>
             <p className="text-slate-400 text-[11px] leading-relaxed">
-              Kredensial API dienkripsi end-to-end secara terisolasi. StockAI tidak pernah memegang dana tunai Anda dan hanya mengakses data transaksi sesuai izin read-only atau order routing resmi.
+              Pada fase pengembangan saat ini (Phase 1), seluruh koneksi broker beroperasi secara lokal / mock sandbox untuk demonstrasi UI tanpa transmisi kredensial riil ke server eksternal.
             </p>
           </div>
 
@@ -355,17 +370,17 @@ export default function BrokersPage() {
               <span>2. Unified Normalized Portfolio</span>
             </div>
             <p className="text-slate-400 text-[11px] leading-relaxed">
-              Portofolio dari berbagai broker (misal MOST IDX + Interactive Brokers US) diagregasi ke dalam satu tampilan terpadu dengan konversi kurs mata uang otomatis ke USD atau IDR.
+              Model data portofolio dirancang terstandarisasi untuk menggabungkan posisi dari bursa domestik (IDX) maupun global (US, HK, SG) dengan konversi mata uang otomatis.
             </p>
           </div>
 
           <div className="p-4 rounded-xl border border-slate-800 bg-slate-950/60 space-y-2">
             <div className="flex items-center gap-2 font-bold text-white">
               <SlidersHorizontal className="w-4 h-4 text-emerald-400" />
-              <span>3. Seamless Screener-to-Order</span>
+              <span>3. Read-Only & Order Preview Design</span>
             </div>
             <p className="text-slate-400 text-[11px] leading-relaxed">
-              Hasil screening dari 14 strategi global dapat langsung ditautkan ke akun broker target untuk persiapan order preview yang aman dan deterministik.
+              Arsitektur integrasi masa depan ditargetkan mendukung protokol otentikasi resmi (OAuth 2.0 / API Keys) dengan prinsip hak akses minimal (read-only portofolio & preview konfirmasi order).
             </p>
           </div>
         </div>

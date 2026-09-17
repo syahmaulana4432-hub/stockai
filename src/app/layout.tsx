@@ -4,9 +4,9 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
-  title: 'StockAI Indonesia — Platform Analisis Saham, Edukasi & AI Scenario',
+  title: 'StockAI — Global Stock Research, Screening & AI Intelligence',
   description:
-    'Platform komprehensif analisis saham Indonesia (IDX/BEI), edukasi interaktif 8-tahap, kamus istilah saham, stock screener, dan analisis skenario AI.',
+    'Global stock research, multi-market screening (IDX, US, Global), trading education, portfolio management, and evidence-based AI scenario analysis.',
 };
 
 export default function RootLayout({

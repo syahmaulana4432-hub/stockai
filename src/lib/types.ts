@@ -1,4 +1,4 @@
-// Type definitions for StockAI Indonesia platform
+// Type definitions for StockAI global platform
 
 export type MarketSentimentType = 'BULLISH' | 'NEUTRAL' | 'BEARISH' | 'STRONG_BULLISH' | 'STRONG_BEARISH';
 
@@ -127,18 +127,40 @@ export interface NewsItem {
   url?: string;
 }
 
+export interface DataSourcesMetadata {
+  priceDataBar: string; // e.g. "2026-09-16 16:00 WIB"
+  fundamentalFiling: string; // e.g. "Laporan Tahunan 2025 Audited"
+  latestNewsChecked: string; // e.g. "2026-09-14 09:30 WIB"
+  technicalCalculation: string; // e.g. "2026-09-16 16:05 WIB"
+}
+
+export interface ResearchHypothesis {
+  researchState: 'Bullish Setup' | 'Neutral Setup' | 'Bearish Setup';
+  evidence: string[];
+  trigger: string;
+  invalidation: string;
+  missingData?: string[];
+}
+
 export interface AiScenario {
   title: string;
-  probability: number; // e.g. 55%
+  setupType?: 'Bullish Setup' | 'Neutral Setup' | 'Bearish Setup';
   description: string;
+  evidence?: string[];
   triggerCondition: string;
+  invalidation?: string;
+  missingData?: string[];
+  risk?: string;
   priceTarget: number;
+  probability?: number; // legacy optional for backward compatibility
 }
 
 export interface AiStockAnalysis {
   ticker: string;
   generatedAt: string;
   dataCutoff: string;
+  sourceMetadata?: DataSourcesMetadata;
+  researchHypothesis: ResearchHypothesis;
   technicalSummary: {
     label: AnalysisLabel;
     summary: string;
@@ -147,14 +169,16 @@ export interface AiStockAnalysis {
   fundamentalSummary: {
     label: AnalysisLabel;
     summary: string;
-    healthScore: number; // 1-100
+    healthStatus?: 'Sangat Sehat' | 'Stabil' | 'Perlu Perhatian' | 'Tinggi Risiko';
     valuationStatus: 'Undervalued' | 'Fairly Valued' | 'Overvalued';
     keyPoints: string[];
+    healthScore?: number; // legacy optional
   };
   newsImpact: {
     label: AnalysisLabel;
-    sentimentScore: number; // -100 to +100
+    sentimentTone?: 'Positif' | 'Netral' | 'Hati-Hati' | 'Negatif';
     summary: string;
+    sentimentScore?: number; // legacy optional
   };
   bullishFactors: string[];
   bearishFactors: string[];

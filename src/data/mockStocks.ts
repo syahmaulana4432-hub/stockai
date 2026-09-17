@@ -137,6 +137,26 @@ export const MOCK_STOCKS: Stock[] = [
       ticker: 'BBCA',
       generatedAt: '2026-09-16T16:05:00+07:00',
       dataCutoff: '2026-09-16T16:00:00+07:00',
+      sourceMetadata: {
+        priceDataBar: '2026-09-16 16:00:00 WIB (Closing Bar)',
+        fundamentalFiling: 'Laporan Keuangan Tahunan 2025 Audited (BEI)',
+        latestNewsChecked: '2026-09-14 09:30:00 WIB',
+        technicalCalculation: '2026-09-16 16:05:00 WIB',
+      },
+      researchHypothesis: {
+        researchState: 'Bullish Setup',
+        evidence: [
+          'Struktur harga bergerak di atas garis SMA 20 (Rp 10.050) dan SMA 50 (Rp 9.820) dengan momentum MACD positif.',
+          'ROE sebesar 21,8% dan Net Profit Margin mencapai 51,1%, mempertahankan posisi profitabilitas tertinggi di sektor perbankan.',
+          'CASA ratio di atas 80% melindungi Cost of Funds (CoF) dari potensi kenaikan suku bunga.',
+        ],
+        trigger: 'Konfirmasi penutupan harian di atas level resisten Rp 10.300 didukung volume transaksi > 50 juta lembar.',
+        invalidation: 'Penutupan harian di bawah support psikologis Rp 9.950 membatalkan struktur Higher Low.',
+        missingData: [
+          'Laporan Keuangan Triwulan III (Q3 2026) belum dirilis (estimasi Oktober 2026)',
+          'Statistik detail mutasi kepemilikan investor institusi domestik periode September 2026',
+        ],
+      },
       technicalSummary: {
         label: 'FACT',
         summary:
@@ -151,17 +171,17 @@ export const MOCK_STOCKS: Stock[] = [
         label: 'FACT',
         summary:
           'ROE sebesar 21,8% dan Net Profit Margin mencapai 51,1%, mempertahankan posisi efisiensi operasional tertinggi di sektor perbankan nasional.',
-        healthScore: 94,
+        healthStatus: 'Sangat Sehat',
         valuationStatus: 'Fairly Valued',
         keyPoints: [
           'CASA ratio di atas 80% menjaga Cost of Funds (CoF) tetap rendah.',
           'Rasio Non-Performing Loan (NPL) gross terjaga di 1,8% dengan NPL coverage di atas 230%.',
-          'Valuasi PBV 4.8x mencerminkan premium kualitas (quality premium) dibanding peer rata-rata.',
+          'Valuasi PBV 4.8x mencerminkan premium kualitas dibanding rata-rata perbankan regional.',
         ],
       },
       newsImpact: {
         label: 'INTERPRETATION',
-        sentimentScore: 78,
+        sentimentTone: 'Positif',
         summary:
           'Sentimen pasar terhadap sektor perbankan stabil dengan katalis positif dari pertumbuhan kredit konsumer dan stabilitas suku bunga acuan.',
       },
@@ -305,6 +325,26 @@ export const MOCK_STOCKS: Stock[] = [
       ticker: 'BBRI',
       generatedAt: '2026-09-16T16:05:00+07:00',
       dataCutoff: '2026-09-16T16:00:00+07:00',
+      sourceMetadata: {
+        priceDataBar: '2026-09-16 16:00:00 WIB (Closing Bar)',
+        fundamentalFiling: 'Laporan Keuangan Tahunan 2025 Audited (BEI)',
+        latestNewsChecked: '2026-09-15 11:00:00 WIB',
+        technicalCalculation: '2026-09-16 16:05:00 WIB',
+      },
+      researchHypothesis: {
+        researchState: 'Neutral Setup',
+        evidence: [
+          'Harga sedang menguji area support demand MA50 di rentang Rp 4.900 - Rp 4.950.',
+          'Valuasi PER 12.8x berada di bawah rata-rata historis 5 tahun (14.5x) dengan Dividend Yield 6.2%.',
+          'RSI 14 di level 46,2 mencerminkan fase konsolidasi sehat tanpa tekanan distribusi besar.',
+        ],
+        trigger: 'Kemunculan candlestick bullish reversal (engulfing/pinbar) di atas Rp 4.950 didukung lonjakan volume akumulasi.',
+        invalidation: 'Penutupan harian di bawah Rp 4.880 membatalkan skenario reversal dan membuka penurunan ke Rp 4.750.',
+        missingData: [
+          'Laporan NPL bulanan perbankan periode Agustus-September 2026',
+          'Statistik realisasi pembiayaan holding ultra mikro semester II 2026',
+        ],
+      },
       technicalSummary: {
         label: 'FACT',
         summary:
@@ -318,7 +358,7 @@ export const MOCK_STOCKS: Stock[] = [
         label: 'FACT',
         summary:
           'Dividend yield 6.2% menjadi salah satu yang paling atraktif di indeks LQ45, didukung oleh pertumbuhan pembiayaan mikro.',
-        healthScore: 89,
+        healthStatus: 'Sangat Sehat',
         valuationStatus: 'Undervalued',
         keyPoints: [
           'PER 12.8x berada di bawah rata-rata historis 5 tahun (14.5x).',
@@ -327,7 +367,7 @@ export const MOCK_STOCKS: Stock[] = [
       },
       newsImpact: {
         label: 'INTERPRETATION',
-        sentimentScore: 65,
+        sentimentTone: 'Positif',
         summary:
           'Pertumbuhan segmen ultra mikro menopang yield kredit namun investor tetap memantau Cost of Credit (CoC).',
       },
@@ -455,6 +495,25 @@ export const MOCK_STOCKS: Stock[] = [
       ticker: 'BMRI',
       generatedAt: '2026-09-16T16:05:00+07:00',
       dataCutoff: '2026-09-16T16:00:00+07:00',
+      sourceMetadata: {
+        priceDataBar: '2026-09-16 16:00:00 WIB (Closing Bar)',
+        fundamentalFiling: 'Laporan Keuangan Tahunan 2025 Audited (BEI)',
+        latestNewsChecked: '2026-09-15 11:00:00 WIB',
+        technicalCalculation: '2026-09-16 16:05:00 WIB',
+      },
+      researchHypothesis: {
+        researchState: 'Bullish Setup',
+        evidence: [
+          'Struktur uptrend kuat di atas SMA 20 dan SMA 50 dengan MACD Golden Cross histogram positif.',
+          'Pertumbuhan laba bersih didukung efisiensi digital platform Livin & Kopra dengan ROE 20,1%.',
+          'Valuasi PER 11.2x relatif murah dibanding rata-rata perbankan tier-1 regional.',
+        ],
+        trigger: 'Konfirmasi penutupan harian di atas swing high Rp 6.700 dengan volume akumulasi > 50M lembar.',
+        invalidation: 'Penutupan di bawah support breakout Rp 6.450 membatalkan momentum kelanjutan tren naik.',
+        missingData: [
+          'Publikasi laporan keuangan triwulan III 2026 (dijadwalkan Oktober 2026)',
+        ],
+      },
       technicalSummary: {
         label: 'FACT',
         summary:
@@ -465,13 +524,13 @@ export const MOCK_STOCKS: Stock[] = [
         label: 'FACT',
         summary:
           'Pertumbuhan laba bersih didukung efisiensi digital banking Livin dan Kopra, dengan ROE mencapai 20,1%.',
-        healthScore: 92,
+        healthStatus: 'Sangat Sehat',
         valuationStatus: 'Undervalued',
         keyPoints: ['PER 11.2x sangat atraktif untuk bank dengan ROE > 20%.'],
       },
       newsImpact: {
         label: 'INTERPRETATION',
-        sentimentScore: 82,
+        sentimentTone: 'Positif',
         summary: 'Kinerja kredit korporasi solid seiring percepatan belanja modal infrastruktur nasional.',
       },
       bullishFactors: ['Pertumbuhan laba dua digit dengan NPL terendah dalam 5 tahun terakhir.'],
@@ -588,6 +647,25 @@ export const MOCK_STOCKS: Stock[] = [
       ticker: 'TLKM',
       generatedAt: '2026-09-16T16:05:00+07:00',
       dataCutoff: '2026-09-16T16:00:00+07:00',
+      sourceMetadata: {
+        priceDataBar: '2026-09-16 16:00:00 WIB (Closing Bar)',
+        fundamentalFiling: 'Laporan Keuangan Tahunan 2025 Audited (BEI)',
+        latestNewsChecked: '2026-09-15 11:00:00 WIB',
+        technicalCalculation: '2026-09-16 16:05:00 WIB',
+      },
+      researchHypothesis: {
+        researchState: 'Neutral Setup',
+        evidence: [
+          'Harga membentuk pola double bottom di area demand psikologis Rp 2.950 - Rp 3.000.',
+          'Pertumbuhan segmen Data Center NeutraDC dan FMC memperkuat recurring revenue berulang.',
+          'Valuasi PER 12.1x dengan Dividend Yield 5.8% memberikan margin of safety memadai.',
+        ],
+        trigger: 'Breakout konfirmasi penutupan di atas neckline Rp 3.150 dengan volume > 70 juta lembar.',
+        invalidation: 'Penutupan di bawah support kunci Rp 2.950 membatalkan pola double bottom.',
+        missingData: [
+          'Update utilisasi kapasitas data center NeutraDC hyperscale Batam & Cikarang',
+        ],
+      },
       technicalSummary: {
         label: 'FACT',
         summary:
@@ -598,13 +676,13 @@ export const MOCK_STOCKS: Stock[] = [
         label: 'FACT',
         summary:
           'Pertumbuhan segmen Data Center NeutraDC dan integrasi Fixed Mobile Convergence (FMC) memperkuat recurring revenue.',
-        healthScore: 84,
+        healthStatus: 'Stabil',
         valuationStatus: 'Undervalued',
         keyPoints: ['Yield dividen ~5.8% memberikan bantalan risiko penurunan harga.'],
       },
       newsImpact: {
         label: 'INTERPRETATION',
-        sentimentScore: 60,
+        sentimentTone: 'Netral',
         summary: 'Monetisasi bisnis data center dan AI infrastructure menjadi katalis jangka menengah.',
       },
       bullishFactors: ['Valuasi historis mendekati -1 Standar Deviasi PER 5 tahun.'],
@@ -711,6 +789,25 @@ export const MOCK_STOCKS: Stock[] = [
       ticker: 'ASII',
       generatedAt: '2026-09-16T16:05:00+07:00',
       dataCutoff: '2026-09-16T16:00:00+07:00',
+      sourceMetadata: {
+        priceDataBar: '2026-09-16 16:00:00 WIB (Closing Bar)',
+        fundamentalFiling: 'Laporan Keuangan Tahunan 2025 Audited (BEI)',
+        latestNewsChecked: '2026-09-15 11:00:00 WIB',
+        technicalCalculation: '2026-09-16 16:05:00 WIB',
+      },
+      researchHypothesis: {
+        researchState: 'Neutral Setup',
+        evidence: [
+          'Konsolidasi sideways di range Rp 5.000 - Rp 5.400 dengan volatilitas Bollinger Bands menyempit.',
+          'Valuasi deep value dengan PER 6.8x, PBV 1.05x, dan Dividend Yield 7.5%.',
+          'Posisi kas bersih solid didukung kontribusi dividen dari anak usaha (UNTR & Astra Sedaya).',
+        ],
+        trigger: 'Breakout konfirmasi penutupan di atas level resisten Rp 5.350 didukung volume > 40 juta lembar.',
+        invalidation: 'Penutupan di bawah level psikologis Rp 5.000 membuka pelemahan ke area demand Rp 4.800.',
+        missingData: [
+          'Statistik pangsa pasar wholesales 4W Gaikindo periode September 2026',
+        ],
+      },
       technicalSummary: {
         label: 'FACT',
         summary: 'Konsolidasi sideways di range Rp 5.000 - Rp 5.400. RSI di 45.',
@@ -719,13 +816,13 @@ export const MOCK_STOCKS: Stock[] = [
       fundamentalSummary: {
         label: 'FACT',
         summary: 'Valuasi sangat murah dengan PER 6.8x dan Dividend Yield 7.5%.',
-        healthScore: 86,
+        healthStatus: 'Sangat Sehat',
         valuationStatus: 'Undervalued',
         keyPoints: ['Posisi kas kuat didukung dividen dari UNTR dan jasa keuangan.'],
       },
       newsImpact: {
         label: 'INTERPRETATION',
-        sentimentScore: 50,
+        sentimentTone: 'Netral',
         summary: 'Kompetisi mobil listrik (EV) asal Tiongkok menjadi faktor penekan sentimen.',
       },
       bullishFactors: ['Valuasi deep value dengan dividend yield di atas 7%.'],
@@ -832,6 +929,25 @@ export const MOCK_STOCKS: Stock[] = [
       ticker: 'GOTO',
       generatedAt: '2026-09-16T16:05:00+07:00',
       dataCutoff: '2026-09-16T16:00:00+07:00',
+      sourceMetadata: {
+        priceDataBar: '2026-09-16 16:00:00 WIB (Closing Bar)',
+        fundamentalFiling: 'Laporan Keuangan Tahunan 2025 Audited (BEI)',
+        latestNewsChecked: '2026-09-15 11:00:00 WIB',
+        technicalCalculation: '2026-09-16 16:05:00 WIB',
+      },
+      researchHypothesis: {
+        researchState: 'Bullish Setup',
+        evidence: [
+          'Volume spike masif 1.25B lembar menembus level resisten minor Rp 72 dengan RSI melonjak ke 62,5.',
+          'EBITDA yang disesuaikan berbalik positif didorong monetisasi layanan pinjaman GoTo Financial.',
+          'Posisi kas bersih Rp 21 Triliun memberikan ketahanan modal yang sangat memadai.',
+        ],
+        trigger: 'Volume harian bertahan konsisten di atas 1 miliar lembar dengan penutupan di atas Rp 75.',
+        invalidation: 'Penutupan harian kembali di bawah level breakout Rp 68 menandakan false breakout.',
+        missingData: [
+          'Rincian Gross Transaction Value (GTV) On-Demand Services kuartal III 2026',
+        ],
+      },
       technicalSummary: {
         label: 'FACT',
         summary:
@@ -842,13 +958,13 @@ export const MOCK_STOCKS: Stock[] = [
         label: 'FACT',
         summary:
           'EBITDA yang disesuaikan (Adjusted EBITDA) berbalik positif didorong monetisasi layanan pinjaman GoTo Financial dan efisiensi biaya operasional.',
-        healthScore: 68,
+        healthStatus: 'Stabil',
         valuationStatus: 'Fairly Valued',
         keyPoints: ['Kas bersih Rp 21 Triliun memberikan runway panjang tanpa kebutuhan pendanaan baru.'],
       },
       newsImpact: {
         label: 'INTERPRETATION',
-        sentimentScore: 72,
+        sentimentTone: 'Positif',
         summary: 'Sentimen positif terhadap turnaround profitabilitas sektor teknologi Indonesia.',
       },
       bullishFactors: ['Perbaikan margin GoTo Financial dan buyback saham perseroan.'],
@@ -965,6 +1081,25 @@ export const MOCK_STOCKS: Stock[] = [
       ticker: 'ADRO',
       generatedAt: '2026-09-16T16:05:00+07:00',
       dataCutoff: '2026-09-16T16:00:00+07:00',
+      sourceMetadata: {
+        priceDataBar: '2026-09-16 16:00:00 WIB (Closing Bar)',
+        fundamentalFiling: 'Laporan Keuangan Tahunan 2025 Audited (BEI)',
+        latestNewsChecked: '2026-09-15 11:00:00 WIB',
+        technicalCalculation: '2026-09-16 16:05:00 WIB',
+      },
+      researchHypothesis: {
+        researchState: 'Bullish Setup',
+        evidence: [
+          'Uptrend stabil di atas MA 20 dan MA 50 dengan RSI 56 mengindikasikan momentum akumulasi.',
+          'Valuasi PER 5.2x dan Dividend Yield 11.2% dengan posisi kas bersih (net cash) sangat sehat.',
+          'Diversifikasi ke bisnis aluminium smelter Kaltara menambah nilai katalis masa depan.',
+        ],
+        trigger: 'Konfirmasi penutupan harian di atas level resisten Rp 3.850 dengan volume > 40 juta lembar.',
+        invalidation: 'Penutupan di bawah support Rp 3.550 membatalkan skenario bullish dividend rally.',
+        missingData: [
+          'Jadwal definitif RUPSLB spin-off/corporate action anak usaha batu bara termal',
+        ],
+      },
       technicalSummary: {
         label: 'FACT',
         summary: 'Uptrend stabil di atas MA 20 dan MA 50. RSI di 56.',
@@ -973,13 +1108,13 @@ export const MOCK_STOCKS: Stock[] = [
       fundamentalSummary: {
         label: 'FACT',
         summary: 'Valuasi PER 5.2x dan Dividend Yield 11.2% dengan posisi kas bersih (net cash) sangat sehat.',
-        healthScore: 91,
+        healthStatus: 'Sangat Sehat',
         valuationStatus: 'Undervalued',
         keyPoints: ['Diversifikasi ke bisnis aluminium smelter menambah nilai jangka panjang.'],
       },
       newsImpact: {
         label: 'INTERPRETATION',
-        sentimentScore: 68,
+        sentimentTone: 'Positif',
         summary: 'Harga batu bara Newcastle stabil di kisaran USD 140/ton menopang ASP.',
       },
       bullishFactors: ['Dividen jumbo dan arus kas bebas (FCF) yang melimpah.'],
@@ -1086,6 +1221,25 @@ export const MOCK_STOCKS: Stock[] = [
       ticker: 'ICBP',
       generatedAt: '2026-09-16T16:05:00+07:00',
       dataCutoff: '2026-09-16T16:00:00+07:00',
+      sourceMetadata: {
+        priceDataBar: '2026-09-16 16:00:00 WIB (Closing Bar)',
+        fundamentalFiling: 'Laporan Keuangan Tahunan 2025 Audited (BEI)',
+        latestNewsChecked: '2026-09-15 11:00:00 WIB',
+        technicalCalculation: '2026-09-16 16:05:00 WIB',
+      },
+      researchHypothesis: {
+        researchState: 'Bullish Setup',
+        evidence: [
+          'Uptrend stabil dengan pola ascending triangle di atas support dinamis MA20 dan MA50.',
+          'Brand equity Indomie yang dominan memberikan pricing power dengan margin operasional 20.4%.',
+          'Penurunan harga bahan baku gandum dan CPO global menekan COGS.',
+        ],
+        trigger: 'Konfirmasi breakout penutupan di atas resisten Rp 11.600 dengan volume transaksi > 15 juta lembar.',
+        invalidation: 'Penutupan di bawah level support Rp 11.100 membatalkan struktur ascending triangle.',
+        missingData: [
+          'Realisasi volume penjualan ekspor anak usaha Pinehill kuartal berjalan',
+        ],
+      },
       technicalSummary: {
         label: 'FACT',
         summary: 'Uptrend stabil dengan pola ascending triangle. RSI 58,2.',
@@ -1094,13 +1248,13 @@ export const MOCK_STOCKS: Stock[] = [
       fundamentalSummary: {
         label: 'FACT',
         summary: 'Brand equity Indomie yang dominan di pasar domestik dan Timur Tengah/Afrika.',
-        healthScore: 88,
+        healthStatus: 'Sangat Sehat',
         valuationStatus: 'Fairly Valued',
         keyPoints: ['Margin operasional 20.4% membuktikan kemampuan pricing power yang solid.'],
       },
       newsImpact: {
         label: 'INTERPRETATION',
-        sentimentScore: 70,
+        sentimentTone: 'Positif',
         summary: 'Penurunan harga gandum dan CPO global menekan beban pokok penjualan (COGS).',
       },
       bullishFactors: ['Defensif terhadap volatilitas makro dan konsumsi harian stabil.'],

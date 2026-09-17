@@ -314,6 +314,9 @@ export function CandleStickChart({ candles, ticker, height = 440 }: CandleStickC
           <div className="flex items-center gap-2">
             <span className="font-mono text-base font-bold text-white">{ticker}</span>
             <span className="text-xs text-slate-400">Daily Chart</span>
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-800 text-cyan-300 border border-slate-700">
+              Historical / Demo Data (Bar: 2026-09-16 16:00 WIB)
+            </span>
           </div>
 
           {/* Candle Data Bar */}

@@ -192,7 +192,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
         {/* Footer shortcuts */}
         <div className="flex items-center justify-between px-4 py-2.5 border-t border-slate-800 bg-slate-950/80 text-[11px] text-slate-400">
           <span>Tekan <kbd className="px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-200">ESC</kbd> untuk menutup</span>
-          <span>StockAI Indonesia Knowledge Base</span>
+          <span>StockAI Global Knowledge Base</span>
         </div>
       </div>
     </div>

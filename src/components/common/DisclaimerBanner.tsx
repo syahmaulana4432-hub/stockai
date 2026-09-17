@@ -28,7 +28,7 @@ export function DisclaimerBanner({ mode = 'compact' }: DisclaimerBannerProps) {
             Disclaimer Pasar Modal & Ketentuan Analisis Algoritmik
           </div>
           <p className="text-slate-400 leading-relaxed">
-            StockAI Indonesia menyajikan analisis data pasar, indikator teknikal komputasional, dan pemodelan skenario probabilitas murni untuk keperluan edukasi dan literasi investasi. Kami tidak memberikan jaminan keuntungan, rekomendasi pasti, atau ajakan transaksi. Seluruh keputusan investasi dan risiko modal sepenuhnya berada di tangan masing-masing investor.
+            StockAI menyajikan analisis data pasar, indikator teknikal komputasional deterministik, dan pemodelan riset kualitatif berbasis bukti murni untuk keperluan edukasi dan literasi investasi. Kami tidak memberikan jaminan keuntungan, rekomendasi pasti, atau ajakan transaksi. Seluruh keputusan investasi dan risiko modal sepenuhnya berada di tangan masing-masing investor.
           </p>
         </div>
       </div>
