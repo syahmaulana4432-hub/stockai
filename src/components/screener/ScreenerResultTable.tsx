@@ -20,6 +20,7 @@ import {
   Zap,
   Info,
   Layers,
+  Building2,
 } from 'lucide-react';
 
 interface ScreenerResultTableProps {
@@ -492,9 +493,19 @@ export function ScreenerResultTable({
                       </span>
                     </td>
 
-                    {/* Actions: Why Match, Analysis, Watchlist, Trade */}
+                    {/* Actions: Profil, Why Match, Analysis, Watchlist, Trade */}
                     <td className="p-3.5 font-sans">
                       <div className="flex items-center justify-center gap-1.5 whitespace-nowrap">
+                        {/* 0. Company Profile */}
+                        <Link
+                          href={`/company/${item.symbol}`}
+                          className="flex items-center gap-1 text-[10px] font-semibold text-slate-300 bg-slate-800 border border-slate-700 px-2 py-1 rounded-lg hover:text-indigo-300 hover:bg-slate-700 transition-colors"
+                          title={`Buka profil & model bisnis ${item.symbol}`}
+                        >
+                          <Building2 className="w-3 h-3 text-indigo-400" />
+                          <span>Profil</span>
+                        </Link>
+
                         {/* 1. Why Match */}
                         <button
                           type="button"

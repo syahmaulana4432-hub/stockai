@@ -449,18 +449,28 @@ export default function NewsPage() {
                       {/* Footer Row: Related Tickers + Source Link */}
                       <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/60 text-xs">
                         {item.relatedTickers.length > 0 && (
-                          <div className="flex items-center gap-1.5">
+                          <div className="flex items-center gap-1.5 flex-wrap">
                             <span className="text-[11px] text-slate-500 font-medium">Emiten Terkait:</span>
-                            <div className="flex items-center gap-1.5">
+                            <div className="flex items-center gap-2 flex-wrap">
                               {item.relatedTickers.map((t) => (
-                                <Link
-                                  key={t}
-                                  href={`/analysis/${t}`}
-                                  className="inline-flex items-center gap-1 font-mono text-xs font-bold text-cyan-400 hover:text-cyan-300 bg-cyan-950/40 border border-cyan-500/30 px-2 py-0.5 rounded hover:bg-cyan-900/40 transition-colors"
-                                >
-                                  <span>{t}</span>
-                                  <ArrowUpRight className="w-3 h-3 text-cyan-400" />
-                                </Link>
+                                <div key={t} className="inline-flex items-center gap-1 bg-slate-900 border border-slate-800 rounded-lg p-0.5">
+                                  <Link
+                                    href={`/analysis/${t}`}
+                                    className="inline-flex items-center gap-1 font-mono text-[11px] font-bold text-cyan-400 hover:text-cyan-300 px-1.5 py-0.5 rounded hover:bg-cyan-950/40 transition-colors"
+                                    title={`Buka analisis saham ${t}`}
+                                  >
+                                    <span>{t} (Analisis)</span>
+                                    <ArrowUpRight className="w-3 h-3 text-cyan-400" />
+                                  </Link>
+                                  <span className="text-slate-600">|</span>
+                                  <Link
+                                    href={`/company/${t}`}
+                                    className="inline-flex items-center gap-0.5 font-mono text-[11px] font-medium text-slate-400 hover:text-indigo-300 px-1.5 py-0.5 rounded hover:bg-indigo-950/30 transition-colors"
+                                    title={`Buka profil bisnis ${t}`}
+                                  >
+                                    <span>Profil</span>
+                                  </Link>
+                                </div>
                               ))}
                             </div>
                           </div>
