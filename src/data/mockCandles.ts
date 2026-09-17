@@ -19,15 +19,18 @@ export function generateCandles(
     return randomSeed / 233280;
   };
 
-  const startDate = new Date('2026-03-01');
+  // Generate trading days ending at 2026-09-16
+  const tradingDays: string[] = [];
+  const curr = new Date('2026-09-16T12:00:00Z');
+  while (tradingDays.length < count) {
+    if (curr.getUTCDay() !== 0 && curr.getUTCDay() !== 6) {
+      tradingDays.push(curr.toISOString().split('T')[0]);
+    }
+    curr.setUTCDate(curr.getUTCDate() - 1);
+  }
+  tradingDays.reverse();
 
   for (let i = 0; i < count; i++) {
-    const d = new Date(startDate);
-    d.setDate(d.getDate() + i);
-
-    // Skip weekends
-    if (d.getDay() === 0 || d.getDay() === 6) continue;
-
     const r1 = nextRandom();
     const r2 = nextRandom();
     const r3 = nextRandom();
@@ -41,7 +44,7 @@ export function generateCandles(
     const volume = Math.round(15000000 + r4 * 35000000);
 
     candles.push({
-      time: d.toISOString().split('T')[0],
+      time: tradingDays[i],
       open,
       high,
       low,
