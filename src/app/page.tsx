@@ -39,18 +39,18 @@ export default function HomePage() {
         <div className="relative z-10 max-w-3xl space-y-4">
           <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-xs font-semibold text-cyan-300">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Platform Cerdas Saham Indonesia • Phase 1 MVP</span>
+            <span>Global Stock Research & Multi-Market Intelligence • Phase 1 MVP</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
-            Analisis Saham Komprehensif & Edukasi Berbasis{' '}
+            Global Stock Research, Screening &amp;{' '}
             <span className="bg-gradient-to-r from-cyan-400 via-indigo-400 to-emerald-400 bg-clip-text text-transparent">
-              AI Scenario
+              Evidence-Based AI
             </span>
           </h1>
 
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-            Kombinasi data teknikal matematis, laporan fundamental terstruktur, 24 modul belajar interaktif 8-langkah, dan model skenario probabilitas pasar tanpa janji muluk.
+            Kombinasi data teknikal matematis, laporan fundamental terstruktur, kurikulum trading 9-tahap berurutan, dan analisis skenario berbasis bukti tanpa klaim berlebihan.
           </p>
 
           <div className="flex flex-wrap items-center gap-3 pt-2">
@@ -59,7 +59,7 @@ export default function HomePage() {
               className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 px-5 py-2.5 text-xs sm:text-sm font-bold text-white shadow-lg shadow-cyan-950/40 hover:opacity-95 transition-opacity"
             >
               <Sparkles className="w-4 h-4" />
-              <span>Mulai Analisis BBCA</span>
+              <span>Mulai Riset BBCA</span>
             </Link>
 
             <Link
@@ -67,7 +67,7 @@ export default function HomePage() {
               className="inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-800/80 px-5 py-2.5 text-xs sm:text-sm font-semibold text-slate-200 hover:bg-slate-700 transition-colors"
             >
               <BookOpen className="w-4 h-4 text-indigo-400" />
-              <span>24 Modul Belajar Saham</span>
+              <span>Kurikulum Trading 9-Tahap</span>
             </Link>
 
             <Link
@@ -75,7 +75,7 @@ export default function HomePage() {
               className="inline-flex items-center gap-2 rounded-xl border border-slate-700/60 bg-slate-900/60 px-4 py-2.5 text-xs sm:text-sm font-medium text-slate-300 hover:text-white transition-colors"
             >
               <SlidersHorizontal className="w-4 h-4 text-slate-400" />
-              <span>Stock Screener</span>
+              <span>Global Screener</span>
             </Link>
           </div>
         </div>
@@ -156,7 +156,7 @@ export default function HomePage() {
                 <BookOpen className="w-3.5 h-3.5 text-indigo-400" /> Modul Belajar Populer
               </h3>
               <Link href="/learn" className="text-[11px] text-indigo-400 hover:text-indigo-300 font-semibold">
-                Lihat 24 Modul
+                Kurikulum 9-Tahap
               </Link>
             </div>
 

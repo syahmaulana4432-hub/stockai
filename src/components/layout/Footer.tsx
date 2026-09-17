@@ -56,7 +56,7 @@ export function Footer() {
             <ul className="space-y-1.5">
               <li>
                 <Link href="/learn" className="hover:text-indigo-400 transition-colors">
-                  24 Modul Belajar Saham (8-Step)
+                  Kurikulum Trading 9-Tahap
                 </Link>
               </li>
               <li>
