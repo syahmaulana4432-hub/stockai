@@ -3,9 +3,10 @@
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { MOCK_NEWS_LIST, MOCK_CORPORATE_ACTIONS } from '@/data/mockNews';
-import { NewsCategory, NewsSentiment, NewsImpactLevel } from '@/lib/types';
+import { NewsCategory, NewsSentiment, NewsImpactLevel, NewsItem } from '@/lib/types';
 import { BadgeTag } from '@/components/common/BadgeTag';
 import { DisclaimerBanner } from '@/components/common/DisclaimerBanner';
+import { MarketPulseChart } from '@/components/news/MarketPulseChart';
 import { formatDateID } from '@/lib/utils';
 import {
   Newspaper,
@@ -25,6 +26,8 @@ import {
   Landmark,
   RotateCcw,
   ShieldCheck,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react';
 
 const CATEGORIES: { label: string; value: NewsCategory | 'ALL'; icon: React.ElementType }[] = [
@@ -40,6 +43,15 @@ export default function NewsPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSentiment, setSelectedSentiment] = useState<NewsSentiment | 'ALL'>('ALL');
   const [selectedImpact, setSelectedImpact] = useState<NewsImpactLevel | 'ALL'>('ALL');
+  // State for expanded news cards (ID set)
+  const [expandedIds, setExpandedIds] = useState<Record<string, boolean>>({});
+
+  const toggleExpand = (id: string) => {
+    setExpandedIds((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
 
   const filteredNews = useMemo(() => {
     return MOCK_NEWS_LIST.filter((item) => {
@@ -95,23 +107,23 @@ export default function NewsPage() {
     switch (sentiment) {
       case 'Positif':
         return (
-          <span className="inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-950/60 text-emerald-300 border border-emerald-500/40">
-            <TrendingUp className="w-3 h-3 text-emerald-400" />
-            <span>Tone Positif</span>
+          <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-300 border border-emerald-500/40">
+            <TrendingUp className="w-2.5 h-2.5 text-emerald-400" />
+            <span>Positif</span>
           </span>
         );
       case 'Negatif':
         return (
-          <span className="inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-rose-950/60 text-rose-300 border border-rose-500/40">
-            <TrendingDown className="w-3 h-3 text-rose-400" />
-            <span>Tone Negatif</span>
+          <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded bg-rose-950/60 text-rose-300 border border-rose-500/40">
+            <TrendingDown className="w-2.5 h-2.5 text-rose-400" />
+            <span>Negatif</span>
           </span>
         );
       default:
         return (
-          <span className="inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
-            <Minus className="w-3 h-3 text-slate-400" />
-            <span>Tone Netral</span>
+          <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
+            <Minus className="w-2.5 h-2.5 text-slate-400" />
+            <span>Netral</span>
           </span>
         );
     }
@@ -121,27 +133,87 @@ export default function NewsPage() {
     switch (impact) {
       case 'Tinggi':
         return (
-          <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase tracking-wider">
-            Dampak Tinggi
+          <span className="text-[10px] font-bold px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase">
+            Tinggi
           </span>
         );
       case 'Sedang':
         return (
-          <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 uppercase tracking-wider">
-            Dampak Sedang
+          <span className="text-[10px] font-semibold px-1.5 py-0.2 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 uppercase">
+            Sedang
           </span>
         );
       default:
         return (
-          <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700 uppercase tracking-wider">
-            Dampak Rendah
+          <span className="text-[10px] font-normal px-1.5 py-0.2 rounded bg-slate-800 text-slate-400 border border-slate-700 uppercase">
+            Rendah
           </span>
         );
     }
   };
 
+  // Thumbnail generator per category
+  const renderThumbnail = (category: NewsCategory) => {
+    switch (category) {
+      case 'Ekonomi Domestik':
+        return (
+          <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-gradient-to-br from-indigo-900/60 via-slate-900 to-indigo-950/80 border border-indigo-500/30 flex flex-col items-center justify-center shrink-0 shadow-inner group-hover:scale-105 transition-transform">
+            <Landmark className="w-6 h-6 text-indigo-400" />
+            <span className="text-[9px] font-mono font-bold text-indigo-300 mt-1">Domestik</span>
+            <span className="absolute top-1 right-1 text-[8px] font-mono px-1 py-0.2 rounded bg-slate-950/90 text-slate-400 border border-slate-800">
+              Demo
+            </span>
+          </div>
+        );
+      case 'Ekonomi Global':
+        return (
+          <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-gradient-to-br from-cyan-900/60 via-slate-900 to-cyan-950/80 border border-cyan-500/30 flex flex-col items-center justify-center shrink-0 shadow-inner group-hover:scale-105 transition-transform">
+            <Globe2 className="w-6 h-6 text-cyan-400" />
+            <span className="text-[9px] font-mono font-bold text-cyan-300 mt-1">Global</span>
+            <span className="absolute top-1 right-1 text-[8px] font-mono px-1 py-0.2 rounded bg-slate-950/90 text-slate-400 border border-slate-800">
+              Demo
+            </span>
+          </div>
+        );
+      case 'Sektor':
+        return (
+          <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-gradient-to-br from-purple-900/60 via-slate-900 to-purple-950/80 border border-purple-500/30 flex flex-col items-center justify-center shrink-0 shadow-inner group-hover:scale-105 transition-transform">
+            <PieChart className="w-6 h-6 text-purple-400" />
+            <span className="text-[9px] font-mono font-bold text-purple-300 mt-1">Sektor</span>
+            <span className="absolute top-1 right-1 text-[8px] font-mono px-1 py-0.2 rounded bg-slate-950/90 text-slate-400 border border-slate-800">
+              Demo
+            </span>
+          </div>
+        );
+      default:
+        return (
+          <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-gradient-to-br from-emerald-900/60 via-slate-900 to-emerald-950/80 border border-emerald-500/30 flex flex-col items-center justify-center shrink-0 shadow-inner group-hover:scale-105 transition-transform">
+            <Building2 className="w-6 h-6 text-emerald-400" />
+            <span className="text-[9px] font-mono font-bold text-emerald-300 mt-1">Emiten</span>
+            <span className="absolute top-1 right-1 text-[8px] font-mono px-1 py-0.2 rounded bg-slate-950/90 text-slate-400 border border-slate-800">
+              Demo
+            </span>
+          </div>
+        );
+    }
+  };
+
+  const formatShortDate = (dateStr: string) => {
+    const d = new Date(dateStr);
+    const day = d.getDate();
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+    const month = monthNames[d.getMonth()];
+    const year = String(d.getFullYear()).slice(-2);
+    const hours = String(d.getHours()).padStart(2, '0');
+    const mins = String(d.getMinutes()).padStart(2, '0');
+    return `${day} ${month} ${year}, ${hours}:${mins}`;
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 space-y-6">
+      {/* Top Banner Alert */}
+      <DisclaimerBanner mode="compact" />
+
       {/* Header Banner */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
@@ -165,7 +237,10 @@ export default function NewsPage() {
         </div>
       </div>
 
-      <DisclaimerBanner mode="compact" />
+      {/* ========================================================
+          MARKET PULSE CHART (Stockbit-Style Visual Index Chart)
+      ======================================================== */}
+      <MarketPulseChart />
 
       {/* Category Tabs */}
       <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-slate-800/80">
@@ -258,14 +333,14 @@ export default function NewsPage() {
         {/* Filter Summary */}
         <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400 pt-1 border-t border-slate-800/60 font-mono">
           <span>Menampilkan {filteredNews.length} dari {MOCK_NEWS_LIST.length} Berita Terverifikasi</span>
-          <span className="text-[11px] text-slate-500">Simulated News & AI Intelligence Feed — Phase 1</span>
+          <span className="text-[11px] text-slate-500">Klik kartu untuk membuka analisis AI lengkap (Expanded View)</span>
         </div>
       </div>
 
       {/* Main Grid: News Feed + Corporate Actions */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* News Feed - 2 Columns */}
-        <div className="lg:col-span-2 space-y-4">
+        <div className="lg:col-span-2 space-y-3.5">
           {filteredNews.length === 0 ? (
             <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-12 text-center space-y-3">
               <Newspaper className="w-10 h-10 text-slate-600 mx-auto" />
@@ -282,120 +357,130 @@ export default function NewsPage() {
               </button>
             </div>
           ) : (
-            filteredNews.map((item) => (
-              <article
-                key={item.id}
-                className="rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-xl backdrop-blur-sm space-y-4 hover:border-slate-700/90 transition-all"
-              >
-                {/* News Header Bar */}
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <div className="flex flex-wrap items-center gap-2 text-xs">
-                    {/* Source with External Link */}
-                    <a
-                      href={item.sourceUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title="Buka sumber rilis resmi (Simulated URL)"
-                      className="inline-flex items-center gap-1 font-semibold text-cyan-400 hover:text-cyan-300 hover:underline"
-                    >
-                      <span>{item.source}</span>
-                      <ExternalLink className="w-3 h-3 opacity-80" />
-                    </a>
-
-                    <span className="text-slate-600">•</span>
-
-                    {/* Timestamp */}
-                    <span className="text-slate-400 font-mono text-[11px]">
-                      {new Date(item.publishedAt).toLocaleDateString('id-ID', {
-                        day: 'numeric',
-                        month: 'short',
-                        year: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                      })}{' '}
-                      WIB
-                    </span>
-
-                    <span className="text-slate-600">•</span>
-
-                    {/* Category */}
-                    <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-[10px] font-semibold">
-                      {item.category}
-                    </span>
-
-                    {item.sector && (
-                      <span className="px-2 py-0.5 rounded bg-slate-950 text-slate-400 border border-slate-800 text-[10px] font-mono">
-                        {item.sector}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Badges: Impact & Sentiment */}
-                  <div className="flex items-center gap-2">
-                    {getImpactBadge(item.impactLevel)}
-                    {getSentimentBadge(item.sentiment)}
-                  </div>
-                </div>
-
-                {/* News Headline */}
-                <h3 className="font-bold text-base sm:text-lg text-white leading-snug">
-                  {item.title}
-                </h3>
-
-                {/* Section 1: FACT (Fakta Berita Terverifikasi) */}
-                <div className="rounded-xl border border-slate-800 bg-slate-950/70 p-3.5 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                      <span>Fakta Rilis Sumber (Fact)</span>
-                    </span>
-                    <BadgeTag label="FACT" size="sm" />
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
-                    {item.factContent}
-                  </p>
-                </div>
-
-                {/* Section 2: AI INTERPRETATION (Analisis Relevansi & Implikasi) */}
-                <div className="rounded-xl border border-indigo-500/30 bg-indigo-950/20 p-3.5 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold text-indigo-300 uppercase tracking-wider flex items-center gap-1.5">
-                      <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
-                      <span>AI Interpretation & Contextual Impact</span>
-                    </span>
-                    <BadgeTag label="AI ANALYSIS" size="sm" />
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-sans">
-                    {item.aiInterpretation}
-                  </p>
-                </div>
-
-                {/* Related Ticker Tags */}
-                {item.relatedTickers.length > 0 && (
-                  <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/80">
-                    <div className="flex items-center gap-2">
-                      <span className="text-[11px] text-slate-500 font-medium">Saham Terkait:</span>
+            filteredNews.map((item) => {
+              const isExpanded = !!expandedIds[item.id];
+              return (
+                <article
+                  key={item.id}
+                  onClick={() => toggleExpand(item.id)}
+                  className={`rounded-2xl border transition-all cursor-pointer select-none ${
+                    isExpanded
+                      ? 'border-cyan-500/50 bg-slate-900/95 shadow-2xl'
+                      : 'border-slate-800/90 bg-slate-900/80 hover:border-slate-700 hover:bg-slate-900/90 shadow-md'
+                  } p-4 sm:p-5 space-y-3`}
+                >
+                  {/* Collapsed Header Summary Row */}
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="space-y-1.5 min-w-0 flex-1">
+                      {/* Sub-Header Badges: Category, Sentiment, Impact */}
                       <div className="flex flex-wrap items-center gap-1.5">
-                        {item.relatedTickers.map((t) => (
-                          <Link
-                            key={t}
-                            href={`/analysis/${t}`}
-                            className="inline-flex items-center gap-1 font-mono text-xs font-bold text-cyan-400 hover:text-cyan-300 bg-cyan-950/40 border border-cyan-500/30 px-2 py-0.5 rounded hover:bg-cyan-900/40 transition-colors"
-                          >
-                            <span>{t}</span>
-                            <ArrowUpRight className="w-3 h-3 text-cyan-400" />
-                          </Link>
-                        ))}
+                        <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-[10px] font-semibold">
+                          {item.category}
+                        </span>
+                        {item.sector && (
+                          <span className="px-2 py-0.5 rounded bg-slate-950 text-slate-400 border border-slate-800 text-[10px] font-mono">
+                            {item.sector}
+                          </span>
+                        )}
+                        {getSentimentBadge(item.sentiment)}
+                        {getImpactBadge(item.impactLevel)}
+                      </div>
+
+                      {/* Headline (Max 2 lines before truncate) */}
+                      <h3 className="font-bold text-sm sm:text-base text-white leading-snug line-clamp-2 hover:text-cyan-300 transition-colors">
+                        {item.title}
+                      </h3>
+
+                      {/* Source & Timestamp compact format */}
+                      <div className="flex items-center gap-2 text-[11px] text-slate-400">
+                        <span className="font-medium text-cyan-400 truncate max-w-[200px]">
+                          {item.source}
+                        </span>
+                        <span>•</span>
+                        <span className="font-mono text-slate-400">
+                          {formatShortDate(item.publishedAt)}
+                        </span>
                       </div>
                     </div>
 
-                    <span className="text-[10px] text-slate-500 font-mono">
-                      Simulated Source: demo-source.stockai.local
-                    </span>
+                    {/* Right Side: Category Gradient Thumbnail + Expand Chevron */}
+                    <div className="flex items-center gap-3 shrink-0">
+                      {renderThumbnail(item.category)}
+                      <div className="p-1 rounded-lg bg-slate-950 border border-slate-800 text-slate-400">
+                        {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                      </div>
+                    </div>
                   </div>
-                )}
-              </article>
-            ))
+
+                  {/* Expanded Section: FACT + AI INTERPRETATION + Related Tickers */}
+                  {isExpanded && (
+                    <div
+                      onClick={(e) => e.stopPropagation()} // Prevent collapse when clicking links/text inside
+                      className="pt-3 border-t border-slate-800/80 space-y-3 mt-2 cursor-default"
+                    >
+                      {/* Section 1: FACT */}
+                      <div className="rounded-xl border border-slate-800 bg-slate-950/70 p-3.5 space-y-1.5">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-semibold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                            <span>Fakta Rilis Sumber (Fact)</span>
+                          </span>
+                          <BadgeTag label="FACT" size="sm" />
+                        </div>
+                        <p className="text-xs text-slate-300 leading-relaxed font-sans">
+                          {item.factContent}
+                        </p>
+                      </div>
+
+                      {/* Section 2: AI INTERPRETATION */}
+                      <div className="rounded-xl border border-indigo-500/30 bg-indigo-950/20 p-3.5 space-y-1.5">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-semibold text-indigo-300 uppercase tracking-wider flex items-center gap-1.5">
+                            <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+                            <span>AI Interpretation & Contextual Impact</span>
+                          </span>
+                          <BadgeTag label="AI ANALYSIS" size="sm" />
+                        </div>
+                        <p className="text-xs text-slate-200 leading-relaxed font-sans">
+                          {item.aiInterpretation}
+                        </p>
+                      </div>
+
+                      {/* Footer Row: Related Tickers + Source Link */}
+                      <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/60 text-xs">
+                        {item.relatedTickers.length > 0 && (
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-[11px] text-slate-500 font-medium">Emiten Terkait:</span>
+                            <div className="flex items-center gap-1.5">
+                              {item.relatedTickers.map((t) => (
+                                <Link
+                                  key={t}
+                                  href={`/analysis/${t}`}
+                                  className="inline-flex items-center gap-1 font-mono text-xs font-bold text-cyan-400 hover:text-cyan-300 bg-cyan-950/40 border border-cyan-500/30 px-2 py-0.5 rounded hover:bg-cyan-900/40 transition-colors"
+                                >
+                                  <span>{t}</span>
+                                  <ArrowUpRight className="w-3 h-3 text-cyan-400" />
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        <a
+                          href={item.sourceUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-[11px] text-slate-400 hover:text-cyan-300 font-mono underline ml-auto"
+                        >
+                          <span>Buka Dokumen Rilis Asli</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                </article>
+              );
+            })
           )}
         </div>
 
@@ -457,4 +542,3 @@ export default function NewsPage() {
     </div>
   );
 }
-
