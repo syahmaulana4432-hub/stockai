@@ -1,74 +1,57 @@
 import React from 'react';
-import { MOCK_INDICES, MOCK_MACRO } from '@/data/mockMarket';
-import { StatCard } from '../common/StatCard';
-import { TrendingUp, Coins, DollarSign, Activity, Globe } from 'lucide-react';
-import { formatIDR } from '@/lib/utils';
+import { GLOBAL_INDICES_DETAILED } from '@/data/mockIndicesHistory';
+import { IndexSparkline } from './IndexSparkline';
+import { TrendingUp, Activity, Globe, Clock } from 'lucide-react';
+import { formatPercent } from '@/lib/utils';
+import { BadgeTag } from '../common/BadgeTag';
 
 export function IndicesTicker() {
   return (
     <div className="space-y-4">
-      {/* Primary Indices: IHSG, LQ45, IDX30 */}
-      <div>
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-            <Activity className="w-3.5 h-3.5 text-cyan-400" /> Indeks Pasar Saham Utama
-          </h2>
-          <span className="text-[11px] font-mono text-cyan-400 bg-slate-900 border border-slate-800 px-2 py-0.5 rounded">Simulated Market Data (Phase 1)</span>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          {MOCK_INDICES.map((idx) => (
-            <StatCard
-              key={idx.symbol}
-              title={idx.symbol}
-              value={idx.value.toLocaleString('id-ID', { minimumFractionDigits: 2 })}
-              change={idx.change}
-              changePercent={idx.changePercent}
-              subtitle={idx.name}
-              source={idx.source}
-              timestamp={idx.updatedAt}
-              icon={<TrendingUp className="w-4 h-4 text-cyan-400" />}
-              highlight={idx.symbol === 'IHSG'}
-            />
-          ))}
-        </div>
+      <div className="flex items-center justify-between">
+        <h2 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+          <Activity className="w-3.5 h-3.5 text-cyan-400" /> Indeks Pasar Global &amp; Mini Sparkline
+        </h2>
+        <BadgeTag label="SIMULATED DATA - PHASE 1" size="sm" />
       </div>
 
-      {/* Macro & Commodities: USD/IDR, Gold, Bitcoin */}
-      <div>
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-            <Globe className="w-3.5 h-3.5 text-indigo-400" /> Kurs Makro & Komoditas Acuan
-          </h2>
-          <span className="text-[11px] text-slate-500">Bank Indonesia / Antam / Crypto</span>
-        </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        {GLOBAL_INDICES_DETAILED.slice(0, 6).map((idx) => {
+          const isUp = idx.changePercent >= 0;
+          return (
+            <div
+              key={idx.id}
+              className={`p-3 rounded-2xl border transition-all flex flex-col justify-between ${
+                idx.id === 'IHSG'
+                  ? 'border-cyan-500/50 bg-cyan-950/20 shadow-md ring-1 ring-cyan-500/30'
+                  : 'border-slate-800 bg-slate-900/80 hover:border-slate-700'
+              }`}
+            >
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="font-mono font-bold text-xs text-white">{idx.id}</span>
+                  <span className="text-[10px] text-slate-400">{idx.country.slice(0, 2).toUpperCase()}</span>
+                </div>
+                <div className="text-[11px] text-slate-400 truncate mt-0.5">{idx.name}</div>
+              </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          {MOCK_MACRO.map((macro) => (
-            <StatCard
-              key={macro.symbol}
-              title={macro.name}
-              value={
-                macro.symbol === 'USD/IDR'
-                  ? `Rp ${macro.value.toLocaleString('id-ID')}`
-                  : macro.symbol === 'XAU/IDR'
-                  ? `Rp ${macro.value.toLocaleString('id-ID')}/gr`
-                  : `Rp ${(macro.value / 1_000_000).toFixed(0)} Jt`
-              }
-              change={macro.change}
-              changePercent={macro.changePercent}
-              source={macro.source}
-              timestamp={macro.updatedAt}
-              icon={
-                macro.symbol === 'USD/IDR' ? (
-                  <DollarSign className="w-4 h-4 text-emerald-400" />
-                ) : (
-                  <Coins className="w-4 h-4 text-amber-400" />
-                )
-              }
-            />
-          ))}
-        </div>
+              <div className="mt-2 flex items-end justify-between gap-1">
+                <div>
+                  <div className="text-xs sm:text-sm font-black text-white font-mono">
+                    {idx.value.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}
+                  </div>
+                  <div className={`text-[10px] font-bold font-mono ${isUp ? 'text-emerald-400' : 'text-rose-400'}`}>
+                    {isUp ? '+' : ''}{formatPercent(idx.changePercent)}
+                  </div>
+                </div>
+
+                <div className="shrink-0">
+                  <IndexSparkline data={idx.sparkline} isPositive={isUp} width={65} height={24} />
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
