@@ -195,7 +195,7 @@ export default function HomePage() {
                 <div key={news.id} className="p-2.5 rounded-xl border border-slate-800/60 bg-slate-950/30 space-y-1">
                   <div className="flex items-center justify-between text-[10px]">
                     <span className="text-slate-500 font-semibold">{news.source}</span>
-                    <BadgeTag label={news.impact} size="sm" />
+                    <BadgeTag label={news.sentiment === 'Positif' ? 'POSITIF' : news.sentiment === 'Negatif' ? 'NEGATIF' : 'NETRAL'} size="sm" />
                   </div>
                   <h4 className="text-xs font-medium text-slate-200 line-clamp-2 hover:text-cyan-300 cursor-pointer">
                     {news.title}

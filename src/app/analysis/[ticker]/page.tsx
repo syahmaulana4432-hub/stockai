@@ -264,10 +264,18 @@ export default function StockDetailPage() {
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-semibold text-cyan-400">{item.source}</span>
-                    <BadgeTag label={item.impact} size="sm" />
+                    <BadgeTag label={item.sentiment === 'Positif' ? 'POSITIF' : item.sentiment === 'Negatif' ? 'NEGATIF' : 'NETRAL'} size="sm" />
                   </div>
                   <h4 className="font-bold text-sm text-white">{item.title}</h4>
-                  <p className="text-xs text-slate-300">{item.summary}</p>
+                  <div className="space-y-1.5 text-xs">
+                    <p className="text-slate-300 font-sans">{item.factContent || item.summary}</p>
+                    {item.aiInterpretation && (
+                      <div className="rounded-lg bg-indigo-950/30 border border-indigo-500/20 p-2 text-slate-200">
+                        <strong className="text-indigo-300 font-semibold">AI Context: </strong>
+                        {item.aiInterpretation}
+                      </div>
+                    )}
+                  </div>
                   <span className="text-[10px] text-slate-500 font-mono block">
                     {new Date(item.publishedAt).toLocaleDateString('id-ID')}
                   </span>

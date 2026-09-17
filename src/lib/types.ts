@@ -115,16 +115,26 @@ export interface CorporateAction {
   description: string;
 }
 
+export type NewsCategory = 'Ekonomi Domestik' | 'Ekonomi Global' | 'Sektor' | 'Emiten';
+export type NewsSentiment = 'Positif' | 'Netral' | 'Negatif';
+export type NewsImpactLevel = 'Tinggi' | 'Sedang' | 'Rendah';
+
 export interface NewsItem {
   id: string;
   title: string;
   source: string;
+  sourceUrl: string;
   publishedAt: string;
-  summary: string;
-  impact: 'POSITIF' | 'NEGATIF' | 'NETRAL';
+  factContent: string;
+  aiInterpretation: string;
+  sentiment: NewsSentiment;
+  impactLevel: NewsImpactLevel;
   relatedTickers: string[];
-  category: 'Market' | 'Emiten' | 'Makro' | 'Komoditas' | 'Regulasi';
-  url?: string;
+  category: NewsCategory;
+  sector?: string;
+  // Optional legacy fields for backward compatibility
+  summary?: string;
+  impact?: 'POSITIF' | 'NEGATIF' | 'NETRAL';
 }
 
 export interface DataSourcesMetadata {
